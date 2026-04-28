@@ -1,6 +1,11 @@
 import pandas as pd
 import os
 from dotenv import load_dotenv
+from src.prompts.category_prompt import get_category_narrative
+from src.prompts.region_prompt import get_region_narrative
+from src.prompts.segment_prompt import get_segment_narrative
+from src.prompts.subcategory_prompt import get_subcategory_narrative
+from src.prompts.synthesis_prompt import get_executive_synthesis
 
 load_dotenv()
 
@@ -106,22 +111,55 @@ subcategory_metrics = subcategory_metrics.sort_values("Profit", ascending=False)
 top_5 = subcategory_metrics.head(5)
 bottom_5 = subcategory_metrics.tail(5)
 
+# Overall business metrics for synthesis context
+overall_2026_sales = current["Sales"].sum()
+overall_2026_profit = current["Profit"].sum()
+overall_2026_margin = (overall_2026_profit / overall_2026_sales * 100).round(1)
 
-# Generate narratives
-from src.prompts.category_prompt import get_category_narrative
-from src.prompts.region_prompt import get_region_narrative
-from src.prompts.segment_prompt import get_segment_narrative
-from src.prompts.subcategory_prompt import get_subcategory_narrative
+overall_hist_sales = historical["Sales"].sum()
+overall_hist_profit = historical["Profit"].sum()
+overall_hist_margin = (overall_hist_profit / overall_hist_sales * 100).round(1)
+
+margin_direction = "IMPROVING" if overall_2026_margin > overall_hist_margin else "DECLINING"
+
+overall_context = f"""
+Overall business margin in 2026: {overall_2026_margin}%
+Overall business margin historical average (2023-2025): {overall_hist_margin}%
+Margin direction: {margin_direction}
+Total profit in 2026: ${overall_2026_profit:,.0f}
+All figures are full year 2026 unless otherwise stated.
+Tables is a sub-category within Furniture.
+Copiers is a sub-category within Technology.
+"""
+
+# Generate narrative
+
+# print("=== CATEGORY NARRATIVE ===")
+# print(get_category_narrative(category_yoy))
+
+# print("\n=== REGION NARRATIVE ===")
+# print(get_region_narrative(region_yoy))
+
+# print("\n=== SEGMENT NARRATIVE ===")
+# print(get_segment_narrative(segment_yoy))
+
+# print("\n=== SUB-CATEGORY NARRATIVE ===")
+# print(get_subcategory_narrative(top_5, bottom_5))
 
 
-print("=== CATEGORY NARRATIVE ===")
-print(get_category_narrative(category_yoy))
+category_narrative = get_category_narrative(category_yoy)
+region_narrative = get_region_narrative(region_yoy)
+segment_narrative = get_segment_narrative(segment_yoy)
+subcategory_narrative = get_subcategory_narrative(top_5, bottom_5)
 
-print("\n=== REGION NARRATIVE ===")
-print(get_region_narrative(region_yoy))
+print("\n" + "="*60)
+print("EXECUTIVE BRIEF")
+print("="*60)
+print(get_executive_synthesis(
+    category_narrative,
+    region_narrative,
+    segment_narrative,
+    subcategory_narrative,
+    overall_context
+))
 
-print("\n=== SEGMENT NARRATIVE ===")
-print(get_segment_narrative(segment_yoy))
-
-print("\n=== SUB-CATEGORY NARRATIVE ===")
-print(get_subcategory_narrative(top_5, bottom_5))

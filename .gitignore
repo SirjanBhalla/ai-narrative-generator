@@ -1,3 +1,4 @@
 .env
 testing/
 *.txt
+prompt_log.md

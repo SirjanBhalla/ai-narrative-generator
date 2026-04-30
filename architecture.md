@@ -21,15 +21,4 @@ flowchart TD
     G --> H["main.py\nPasses narratives to report generator"]
     H --> I["generate_report.py\nAssemble interactive HTML"]
     I --> J[("outputs/report.html\nExecutive Report")]
-
-    style A fill:#e8f5e9,stroke:#2e7d32
-    style J fill:#e8f5e9,stroke:#2e7d32
-    style G fill:#388e3c,color:#ffffff,stroke:#2e7d32
-    style E fill:#f1f8e9,stroke:#558b2f
-    style B fill:#c8e6c9,stroke:#2e7d32
-    style F fill:#c8e6c9,stroke:#2e7d32
-    style H fill:#c8e6c9,stroke:#2e7d32
-    style D fill:#dcedc8,stroke:#558b2f
-    style C fill:#dcedc8,stroke:#558b2f
-    style I fill:#dcedc8,stroke:#558b2f
 ```

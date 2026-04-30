@@ -83,7 +83,7 @@ python -m src.main
 
 **6. Open the report**
 
-Open `outputs/report.html` in any browser.
+Open `outputs/report.html` in any browser
 
 ---
 

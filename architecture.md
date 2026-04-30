@@ -1,5 +1,7 @@
 # Pipeline Architecture
 
+## Flowchart
+```mermaid
 flowchart TD
     A[("sample_superstore.xls")] --> B["main.py\nEntry point & orchestrator"]
     B --> C["Load & split data\nHistorical 2023-2025 vs Current 2026"]
@@ -30,3 +32,4 @@ flowchart TD
     style D fill:#dcedc8,stroke:#558b2f
     style C fill:#dcedc8,stroke:#558b2f
     style I fill:#dcedc8,stroke:#558b2f
+```

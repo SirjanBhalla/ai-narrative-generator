@@ -132,34 +132,35 @@ Tables is a sub-category within Furniture.
 Copiers is a sub-category within Technology.
 """
 
-# Generate narrative
-
-# print("=== CATEGORY NARRATIVE ===")
-# print(get_category_narrative(category_yoy))
-
-# print("\n=== REGION NARRATIVE ===")
-# print(get_region_narrative(region_yoy))
-
-# print("\n=== SEGMENT NARRATIVE ===")
-# print(get_segment_narrative(segment_yoy))
-
-# print("\n=== SUB-CATEGORY NARRATIVE ===")
-# print(get_subcategory_narrative(top_5, bottom_5))
-
-
 category_narrative = get_category_narrative(category_yoy)
 region_narrative = get_region_narrative(region_yoy)
 segment_narrative = get_segment_narrative(segment_yoy)
 subcategory_narrative = get_subcategory_narrative(top_5, bottom_5)
 
-print("\n" + "="*60)
-print("EXECUTIVE BRIEF")
-print("="*60)
-print(get_executive_synthesis(
+
+executive_brief = get_executive_synthesis(
     category_narrative,
     region_narrative,
     segment_narrative,
     subcategory_narrative,
     overall_context
-))
+)
 
+
+from src.generate_report import generate_report, save_report
+
+html = generate_report(
+    overall_context,
+    category_yoy,
+    region_yoy,
+    segment_yoy,
+    top_5,
+    bottom_5,
+    category_narrative,
+    region_narrative,
+    segment_narrative,
+    subcategory_narrative,
+    executive_brief
+)
+
+save_report(html)

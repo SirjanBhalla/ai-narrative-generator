@@ -32,8 +32,10 @@ Write an executive narrative structured around exactly these three questions:
    - Do not invent causes that are not in the data
 
 3. What should be done?
-   - Recommend a specific directional decision
-   - Reference the contrast between the weakest and strongest region
+   - Write as many recommendations as the data justifies, minimum 1, maximum 3
+   - Do not repeat the same recommendation with different wording to fill space
+   - Each bullet must be a distinct decision targeting a different part of the problem
+   - Reference the contrast between the weakest and strongest performer
    - Do not invent budget figures, percentages, or allocation numbers
 
 Format rules:
@@ -44,6 +46,8 @@ Format rules:
    - Do not recommend a review or investigation, recommend a decision
    - The first sentence must name a specific region and a specific number
    - Do not invent specific dollar figures or budget numbers
+   - The detailed analysis must go deeper than a headline summary and add specific numbers and sub-level insights, do not restate the obvious
+
 """
 
     response = client.chat.completions.create(

@@ -43,6 +43,8 @@ Exactly 3 bullet points. Each one must:
 - Name specific metrics and numbers
 - Represent an urgent signal, not a general observation
 - Not repeat the same point across bullets
+- Do not connect two separate dimensions as cause and effect unless the data explicitly supports the relationship. Regional and category problems are separate unless the data shows otherwise.
+- Each bullet must describe ONE dimension only. Do not connect Category to Region, Region to Segment, or any two dimensions as cause and effect in the same bullet. Cross-dimension connections are not supported by this data.
 
 **DECISIONS REQUIRED**
 Exactly 2 bullet points. Each one must:

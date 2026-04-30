@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Business Report 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f6f3;
+            --surface: #ffffff;
+            --text-primary: #1c1c1c;
+            --text-secondary: #4a4a4a;
+            --text-muted: #888888;
+            --border: #e4e0d8;
+            --accent: #1a1a2e;
+            --green: #1a6b3c;
+            --amber: #b5611a;
+            --red: #c0392b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .page-wrapper {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 52px 32px 80px;
+        }
+
+        /* HEADER */
+        .report-header {
+            margin-bottom: 40px;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .report-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .report-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        /* SECTION BLOCKS */
+        .section-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 32px 36px;
+            margin-bottom: 24px;
+        }
+
+        .section-eyebrow {
+            font-size: 10px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .section-block h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* EXECUTIVE BRIEF CARDS */
+        .brief-card {
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .brief-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .brief-card-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--surface);
+            background: var(--accent);
+            padding: 12px 20px;
+            letter-spacing: 0.3px;
+        }
+
+        .brief-card-body {
+            padding: 4px 0;
+        }
+
+        .brief-card-item {
+            padding: 12px 20px;
+            font-size: 15.5px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            line-height: 1.7;
+        }
+
+        .brief-card-item:last-child {
+            border-bottom: none;
+        }
+
+        /* SCORECARD */
+        .scorecard-group {
+            margin-bottom: 24px;
+        }
+
+        .scorecard-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .scorecard-group-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .scorecard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .score-card {
+            padding: 16px 18px;
+            border-radius: 4px;
+        }
+
+        .score-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .score-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .score-delta {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .score-status {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .score-metric-type {
+            font-size: 11px;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 4px;
+            font-style: italic;
+        }
+
+        /* COLLAPSIBLE */
+        .collapsible-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .collapsible-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 32px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.15s;
+        }
+
+        .collapsible-header:hover {
+            background: #fafaf7;
+        }
+
+        .collapsible-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .collapsible-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .collapsible-toggle {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        .collapsible-toggle .arrow {
+            display: inline-block;
+            transition: transform 0.2s;
+            font-size: 10px;
+        }
+
+        .collapsible-toggle.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        .collapsible-content {
+            display: none;
+            padding: 0 32px 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .collapsible-content.open {
+            display: block;
+        }
+
+        /* TABLES */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0 0;
+            font-size: 14px;
+        }
+
+        th {
+            text-align: left;
+            padding: 10px 14px;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 2px solid var(--border);
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: #fafaf8; }
+
+        /* NARRATIVE CARDS */
+        .narrative-block {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .narrative-label {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .narrative-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .narrative-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .narrative-card-heading {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--surface);
+            background: #2c3e6b;
+            padding: 10px 18px;
+        }
+
+        .narrative-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .narrative-card li {
+            font-size: 15.5px;
+            color: var(--text-secondary);
+            padding: 11px 18px;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.7;
+        }
+
+        .narrative-card li:last-child {
+            border-bottom: none;
+        }
+
+        .narrative-card p {
+            font-size: 15.5px;
+            color: var(--text-secondary);
+            padding: 11px 18px;
+            line-height: 1.7;
+        }
+
+        .table-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 28px;
+            margin-bottom: 4px;
+        }
+
+        /* FOOTER */
+        .report-footer {
+            margin-top: 52px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <header class="report-header">
+        <h1>Executive Business Report</h1>
+        <div class="report-meta">
+            <span>Full Year 2026</span>
+            <span>·</span>
+            <span>Benchmark: 3-Year Historical Average (2023–2025)</span>
+            <span>·</span>
+            <span>AI-Generated Narrative</span>
+        </div>
+    </header>
+
+    <section class="section-block">
+        <div class="section-eyebrow">Executive Brief</div>
+        <h2>Summary for Leadership</h2>
+        <div class="brief-card"><div class="brief-card-heading">BUSINESS HEADLINE</div><div class="brief-card-body"><div class="brief-card-item">The overall business margin has improved to 12.9% in 2026, up from a historical average of 12.4%, with a total profit of $95,926.</div></div></div><div class="brief-card"><div class="brief-card-heading">CRITICAL FINDINGS</div><div class="brief-card-body"><div class="brief-card-item">The Furniture category is experiencing a significant decline in margin, with a 2026 margin of 1.5%, down from a 3-year historical average of 3.1%, representing a -1.5% margin decrease.</div><div class="brief-card-item">The Central region has a margin of 5.1% in 2026, down from a historical average of 9.1%, with an average discount rate of 24.1%, indicating a need for pricing adjustments.</div><div class="brief-card-item">The Corporate segment has a 2026 margin of 11.4%, compared to a historical average of 14.1%, representing a -2.6% margin decline, with an average discount rate of 15.6%.</div></div></div><div class="brief-card"><div class="brief-card-heading">DECISIONS REQUIRED</div><div class="brief-card-body"><div class="brief-card-item">Discontinue or restructure the Tables sub-category within Furniture, which is generating a significant loss of $17,753.0.</div><div class="brief-card-item">Implement pricing adjustments in the Central region to reduce the average discount rate from 24.1% to improve the region's margin.</div></div></div><div class="brief-card"><div class="brief-card-heading">OPPORTUNITY</div><div class="brief-card-body"><div class="brief-card-item">The Technology category has improved its margin to 18.7%, with the Copiers sub-category being the highest profit generator, with a profit of $56,094.0.</div></div></div>
+    </section>
+
+    <section class="section-block">
+        <div class="section-eyebrow">Performance Scorecard</div>
+        <h2>Metric Health at a Glance</h2>
+        
+    <div class="scorecard-group">
+        <div class="scorecard-group-label">Category Performance</div>
+        <div class="scorecard-grid">
+        <div class="score-card" style="background:#fdf6ec;border:1px solid #f0c490;">
+            <div class="score-label">Furniture</div>
+            <div class="score-value" style="color:#b5611a;">1.5%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: -1.5%</div>
+            <div class="score-status" style="color:#b5611a;">Needs Attention</div>
+        </div>
+        <div class="score-card" style="background:#fdf6ec;border:1px solid #f0c490;">
+            <div class="score-label">Office Supplies</div>
+            <div class="score-value" style="color:#b5611a;">16.4%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: -1.2%</div>
+            <div class="score-status" style="color:#b5611a;">Needs Attention</div>
+        </div>
+        <div class="score-card" style="background:#f0faf4;border:1px solid #a8d5b5;">
+            <div class="score-label">Technology</div>
+            <div class="score-value" style="color:#1a6b3c;">18.7%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: 1.8%</div>
+            <div class="score-status" style="color:#1a6b3c;">Improving</div>
+        </div></div>
+    </div>
+    <div class="scorecard-group">
+        <div class="scorecard-group-label">Regional Performance</div>
+        <div class="scorecard-grid">
+        <div class="score-card" style="background:#fdf0ef;border:1px solid #f0a090;">
+            <div class="score-label">Central</div>
+            <div class="score-value" style="color:#c0392b;">5.1%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: -4.0%</div>
+            <div class="score-status" style="color:#c0392b;">Critical</div>
+        </div>
+        <div class="score-card" style="background:#f0faf4;border:1px solid #a8d5b5;">
+            <div class="score-label">East</div>
+            <div class="score-value" style="color:#1a6b3c;">15.7%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: 2.9%</div>
+            <div class="score-status" style="color:#1a6b3c;">Improving</div>
+        </div>
+        <div class="score-card" style="background:#fdf0ef;border:1px solid #f0a090;">
+            <div class="score-label">South</div>
+            <div class="score-value" style="color:#c0392b;">7.2%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: -6.9%</div>
+            <div class="score-status" style="color:#c0392b;">Critical</div>
+        </div>
+        <div class="score-card" style="background:#f0faf4;border:1px solid #a8d5b5;">
+            <div class="score-label">West</div>
+            <div class="score-value" style="color:#1a6b3c;">17.6%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: 4.0%</div>
+            <div class="score-status" style="color:#1a6b3c;">Improving</div>
+        </div></div>
+    </div>
+    <div class="scorecard-group">
+        <div class="scorecard-group-label">Segment Performance</div>
+        <div class="scorecard-grid">
+        <div class="score-card" style="background:#f0faf4;border:1px solid #a8d5b5;">
+            <div class="score-label">Consumer</div>
+            <div class="score-value" style="color:#1a6b3c;">13.8%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: 3.0%</div>
+            <div class="score-status" style="color:#1a6b3c;">Improving</div>
+        </div>
+        <div class="score-card" style="background:#fdf0ef;border:1px solid #f0a090;">
+            <div class="score-label">Corporate</div>
+            <div class="score-value" style="color:#c0392b;">11.4%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: -2.6%</div>
+            <div class="score-status" style="color:#c0392b;">Critical</div>
+        </div>
+        <div class="score-card" style="background:#fdf6ec;border:1px solid #f0c490;">
+            <div class="score-label">Home Office</div>
+            <div class="score-value" style="color:#b5611a;">13.1%</div>
+            <div class="score-metric-type">Profit Margin</div>
+            <div class="score-delta">vs hist: -1.5%</div>
+            <div class="score-status" style="color:#b5611a;">Needs Attention</div>
+        </div></div>
+    </div>
+    <div class="scorecard-group">
+        <div class="scorecard-group-label">Sub-Category Alerts</div>
+        <div class="scorecard-grid">
+        <div class="score-card" style="background:#fdf0ef;border:1px solid #f0a090;">
+            <div class="score-label">Supplies</div>
+            <div class="score-value" style="color:#c0392b;">$-1,171</div>
+            <div class="score-metric-type">Annual Profit</div>
+            <div class="score-delta">Margin: -2.5%</div>
+            <div class="score-status" style="color:#c0392b;">Value Destroyer</div>
+        </div>
+        <div class="score-card" style="background:#fdf0ef;border:1px solid #f0a090;">
+            <div class="score-label">Bookcases</div>
+            <div class="score-value" style="color:#c0392b;">$-3,632</div>
+            <div class="score-metric-type">Annual Profit</div>
+            <div class="score-delta">Margin: -3.1%</div>
+            <div class="score-status" style="color:#c0392b;">Value Destroyer</div>
+        </div>
+        <div class="score-card" style="background:#fdf0ef;border:1px solid #f0a090;">
+            <div class="score-label">Tables</div>
+            <div class="score-value" style="color:#c0392b;">$-17,753</div>
+            <div class="score-metric-type">Annual Profit</div>
+            <div class="score-delta">Margin: -8.5%</div>
+            <div class="score-status" style="color:#c0392b;">Value Destroyer</div>
+        </div></div>
+    </div>
+    </section>
+
+    <div class="collapsible-block">
+        <div class="collapsible-header" onclick="toggleSection('category')">
+            <div class="collapsible-header-left">
+                <div class="section-eyebrow">Category Analysis</div>
+                <h3>Performance by Product Category</h3>
+            </div>
+            <div class="collapsible-toggle" id="category-toggle">
+                View Analysis <span class="arrow">▼</span>
+            </div>
+        </div>
+        <div class="collapsible-content" id="category-content">
+            
+    <table>
+        <thead><tr><th>Category</th><th>Margin 2026</th><th>Margin hist</th><th>Margin Delta</th><th>Avg Discount</th></tr></thead>
+        <tbody><tr><td>Furniture</td><td>1.5%</td><td>3.1%</td><td style="color:#c0392b;font-weight:600;">-1.5%</td><td>17.3%</td></tr><tr><td>Office Supplies</td><td>16.4%</td><td>17.6%</td><td style="color:#c0392b;font-weight:600;">-1.2%</td><td>15.6%</td></tr><tr><td>Technology</td><td>18.7%</td><td>16.9%</td><td style="color:#1a6b3c;font-weight:600;">1.8%</td><td>13.1%</td></tr></tbody>
+    </table>
+            <div class="narrative-block">
+                <div class="narrative-label">Detailed Analysis</div>
+                <div class="narrative-card"><div class="narrative-card-heading">What is happening?</div><ul><li>The Furniture category is experiencing the most critical decline, with a margin of 1.5% in 2026, down from a 3-year historical average of 3.1%, representing a -1.5% margin decrease, which is the largest decline among all categories.</li><li>Office Supplies have seen a margin decrease from 17.6% to 16.4%, a -1.2% change, while Technology has improved its margin from 16.9% to 18.7%, a 1.8% increase, highlighting a contrast between the weakest and strongest performers.</li><li>The margin differences between categories, such as the 17.2% gap between Technology's 18.7% and Furniture's 1.5%, indicate varying performance across the business.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What is driving it?</div><ul><li>The high average discount rate of 17.3% in the Furniture category is likely contributing to its poor margin performance of 1.5%, as it is the highest discount rate among all categories, suggesting that excessive discounting may be eroding margins.</li><li>In contrast, the Technology category, with an average discount rate of 13.1%, has managed to improve its margin to 18.7%, indicating that more targeted discounting may be beneficial for maintaining profitability.</li><li>The Office Supplies category's average discount rate of 15.6% and margin of 16.4% suggest that discounting strategies may need to be reassessed to improve performance, particularly in comparison to the stronger margin in the Technology category.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What should be done?</div><ul><li>Implement more targeted discounting strategies in the Furniture category, aiming to reduce the average discount rate from 17.3% to a level more in line with the Technology category's 13.1%, to help improve margins from the current 1.5% to at least the historical average of 3.1%.</li><li>Allocate resources to enhance the profitability of the Office Supplies category, focusing on reducing the average discount rate of 15.6% and improving the margin from 16.4% to closer to the Technology category's 18.7%, thereby bridging the gap between the weakest and strongest performers.</li><li>Consider reallocating investments from underperforming categories like Furniture to stronger categories like Technology, which has demonstrated an ability to improve margins, to maximize overall business profitability and support categories with higher growth potential.</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="collapsible-block">
+        <div class="collapsible-header" onclick="toggleSection('region')">
+            <div class="collapsible-header-left">
+                <div class="section-eyebrow">Regional Analysis</div>
+                <h3>Performance by Region</h3>
+            </div>
+            <div class="collapsible-toggle" id="region-toggle">
+                View Analysis <span class="arrow">▼</span>
+            </div>
+        </div>
+        <div class="collapsible-content" id="region-content">
+            
+    <table>
+        <thead><tr><th>Region</th><th>Margin 2026</th><th>Margin hist</th><th>Margin Delta</th><th>Avg Discount</th></tr></thead>
+        <tbody><tr><td>Central</td><td>5.1%</td><td>9.1%</td><td style="color:#c0392b;font-weight:600;">-4.0%</td><td>24.1%</td></tr><tr><td>East</td><td>15.7%</td><td>12.8%</td><td style="color:#1a6b3c;font-weight:600;">2.9%</td><td>14.3%</td></tr><tr><td>South</td><td>7.2%</td><td>14.1%</td><td style="color:#c0392b;font-weight:600;">-6.9%</td><td>14.7%</td></tr><tr><td>West</td><td>17.6%</td><td>13.6%</td><td style="color:#1a6b3c;font-weight:600;">4.0%</td><td>10.9%</td></tr></tbody>
+    </table>
+            <div class="narrative-block">
+                <div class="narrative-label">Detailed Analysis</div>
+                <div class="narrative-card"><div class="narrative-card-heading">What is happening?</div><ul><li>The South region is experiencing a substantial decline in margin, with a 2026 margin of 7.2% compared to a 3-year historical average of 14.1%, representing a -6.9% margin delta, the largest decline among all regions.</li><li>In contrast, the West region is showing a strong margin performance with a 2026 margin of 17.6%, outperforming its historical average of 13.6% by 4.0%.</li><li>The Central region's margin has also decreased, from a historical average of 9.1% to 5.1% in 2026, a -4.0% margin delta, while the East region's margin has increased to 15.7% in 2026 from a historical average of 12.8%, a 2.9% margin delta.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What is driving it?</div><ul><li>The Avg_Discount data suggests that regions with lower average discount rates tend to have higher margins, as seen in the West region with an average discount rate of 10.9% and a margin of 17.6%, and the East region with an average discount rate of 14.3% and a margin of 15.7%.</li><li>Conversely, regions with higher average discount rates tend to have lower margins, such as the Central region with an average discount rate of 24.1% and a margin of 5.1%, and the South region with an average discount rate of 14.7% and a margin of 7.2%.</li><li>The data implies that the average discount rate is a key driver of margin performance, with a 9.2 percentage point difference in average discount rate between the West and Central regions corresponding to a 12.5 percentage point difference in margin.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What should be done?</div><ul><li>Implement a pricing strategy adjustment in the Central region to reduce the average discount rate from 24.1% to a level closer to the West region's 10.9%, aiming to improve the region's margin from 5.1% to at least 10%.</li><li>Develop targeted marketing campaigns in the South region to increase sales without relying heavily on discounts, with the goal of decreasing the average discount rate from 14.7% to 12% and improving the region's margin from 7.2% to at least 10%.</li><li>Allocate resources to replicate the successful strategies employed in the West region, which has achieved a margin of 17.6%, across other regions, particularly the Central and South regions, to bridge the performance gap and improve overall business profitability.</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="collapsible-block">
+        <div class="collapsible-header" onclick="toggleSection('segment')">
+            <div class="collapsible-header-left">
+                <div class="section-eyebrow">Segment Analysis</div>
+                <h3>Performance by Customer Segment</h3>
+            </div>
+            <div class="collapsible-toggle" id="segment-toggle">
+                View Analysis <span class="arrow">▼</span>
+            </div>
+        </div>
+        <div class="collapsible-content" id="segment-content">
+            
+    <table>
+        <thead><tr><th>Segment</th><th>Margin 2026</th><th>Margin hist</th><th>Margin Delta</th><th>Avg Discount</th></tr></thead>
+        <tbody><tr><td>Consumer</td><td>13.8%</td><td>10.8%</td><td style="color:#1a6b3c;font-weight:600;">3.0%</td><td>15.8%</td></tr><tr><td>Corporate</td><td>11.4%</td><td>14.1%</td><td style="color:#c0392b;font-weight:600;">-2.6%</td><td>15.6%</td></tr><tr><td>Home Office</td><td>13.1%</td><td>14.6%</td><td style="color:#c0392b;font-weight:600;">-1.5%</td><td>14.7%</td></tr></tbody>
+    </table>
+            <div class="narrative-block">
+                <div class="narrative-label">Detailed Analysis</div>
+                <div class="narrative-card"><div class="narrative-card-heading">What is happening?</div><ul><li>The Corporate segment is experiencing a notable decline in margin, with a 2026 margin of 11.4% compared to a 3-year historical average of 14.1%, representing a -2.6% margin delta.</li><li>In contrast, the Consumer segment has seen a substantial improvement, with a 2026 margin of 13.8% versus a historical average of 10.8%, resulting in a 3.0% margin increase.</li><li>The Home Office segment's margin has also decreased, albeit less severely, with a 2026 margin of 13.1% compared to a historical average of 14.6%, indicating a -1.5% margin decline.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What is driving it?</div><ul><li>The Corporate segment'saverage discount rate of 15.6% is only slightly higher than the Consumer segment's 15.8%, suggesting that discounting is not the primary driver of the margin decline in the Corporate segment.</li><li>The Home Office segment's average discount rate of 14.7% is lower than both the Consumer and Corporate segments, yet it still experienced a margin decline, indicating that other factors may be contributing to the decrease.</li><li>The Consumer segment's ability to achieve a 13.8% margin despite an average discount rate of 15.8% suggests that this segment is effectively managing its pricing and discount strategies.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What should be done?</div><ul><li>Implement a pricing strategy adjustment for the Corporate segment, aiming to reduce the average discount rate from 15.6% to bring it more in line with the Home Office segment's 14.7%, which could help mitigate the -2.6% margin decline.</li><li>Replicate the successful pricing and discount management strategies from the Consumer segment, which achieved a 13.8% margin, across other segments, particularly the Corporate segment, to improve overall margin performance.</li><li>Consider allocating more resources to the Consumer segment, which has demonstrated a 3.0% margin increase, to further capitalize on its strengths and potentially offset the declines in the Corporate and Home Office segments.</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="collapsible-block">
+        <div class="collapsible-header" onclick="toggleSection('subcategory')">
+            <div class="collapsible-header-left">
+                <div class="section-eyebrow">Sub-Category Analysis</div>
+                <h3>Top and Bottom Performers</h3>
+            </div>
+            <div class="collapsible-toggle" id="subcategory-toggle">
+                View Analysis <span class="arrow">▼</span>
+            </div>
+        </div>
+        <div class="collapsible-content" id="subcategory-content">
+            <div class="table-label">Top 5 by Profit</div>
+            
+    <table>
+        <thead><tr><th>Sub-Category</th><th>Sales</th><th>Profit</th><th>Margin</th></tr></thead>
+        <tbody><tr><td>Copiers</td><td>$150,745</td><td>$56,094</td><td>37.2%</td></tr><tr><td>Phones</td><td>$331,843</td><td>$45,051</td><td>13.6%</td></tr><tr><td>Accessories</td><td>$167,380</td><td>$41,937</td><td>25.1%</td></tr><tr><td>Paper</td><td>$79,541</td><td>$34,512</td><td>43.4%</td></tr><tr><td>Binders</td><td>$207,355</td><td>$31,426</td><td>15.2%</td></tr></tbody>
+    </table>
+            <div class="table-label" style="margin-top:28px;">Bottom 5 by Profit</div>
+            
+    <table>
+        <thead><tr><th>Sub-Category</th><th>Sales</th><th>Profit</th><th>Margin</th></tr></thead>
+        <tbody><tr><td>Machines</td><td>$189,925</td><td>$3,462</td><td>1.8%</td></tr><tr><td>Fasteners</td><td>$8,532</td><td>$2,429</td><td>28.5%</td></tr><tr><td>Supplies</td><td>$46,725</td><td>-$1,171</td><td>-2.5%</td></tr><tr><td>Bookcases</td><td>$115,361</td><td>-$3,632</td><td>-3.1%</td></tr><tr><td>Tables</td><td>$208,020</td><td>-$17,753</td><td>-8.5%</td></tr></tbody>
+    </table>
+            <div class="narrative-block">
+                <div class="narrative-label">Detailed Analysis</div>
+                <div class="narrative-card"><div class="narrative-card-heading">What is happening?</div><ul><li>The Copiers sub-category is the highest profit generator, with a profit of $56,094.0, while the Tables sub-category is the lowest, with a loss of $17,753.0, making it a significant value destroyer.</li><li>The Supplies and Bookcases sub-categories are also value destroyers, with losses of $1,171.0 and $3,632.0, respectively, highlighting the need for immediate attention to turn these sub-categories around.</li><li>In contrast to the high sales volume of $331,843.0 in the Phones sub-category, its profit of $45,051.0 is significantly lower than that of the Copiers sub-category, which has a much lower sales volume of $150,745.0, indicating a potential issue with pricing or cost management in the Phones sub-category.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What is driving it?</div><ul><li>The high sales volume of $208,020.0 in the Tables sub-category is not translating to profit, resulting in a significant loss, which may be due to aggressive pricing or high operational costs.</li><li>The Machines sub-category, with sales of $189,925.0, is only generating a profit of $3,462.0, which is a mere 1.8% margin, suggesting that the sales volume is not being leveraged effectively to drive profitability.</li><li>The contrast between the low-margin sub-categories, such as Machines and Tables, and the high-margin sub-categories, such as Paper and Copiers, highlights the need to analyze the underlying factors driving these differences.</li></ul></div><div class="narrative-card"><div class="narrative-card-heading">What should be done?</div><ul><li>Discontinue or restructure the Tables sub-category, which is generating a significant loss of $17,753.0, to prevent further value destruction and allocate resources to more profitable areas, such as the Copiers sub-category, which has a profit of $56,094.0.</li><li>Implement pricing adjustments or cost reductions in the Phones sub-category to improve its profit margin, which is currently lower than that of the Copiers sub-category, despite having a much higher sales volume.</li><li>Develop a targeted strategy to improve the margin of the Machines sub-category, which has a high sales volume but a low profit margin, by analyzing the pricing, cost structure, and operational efficiency of this sub-category and applying lessons learned from the high-margin sub-categories, such as Paper and Copiers.</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="report-footer">
+        <span>Superstore Business Intelligence — Confidential</span>
+        <span>Powered by AI Narrative Engine</span>
+    </footer>
+
+</div>
+
+<script>
+    function toggleSection(id) {
+        const content = document.getElementById(id + '-content');
+        const toggle = document.getElementById(id + '-toggle');
+        const isOpen = content.classList.contains('open');
+        content.classList.toggle('open', !isOpen);
+        toggle.classList.toggle('open', !isOpen);
+        toggle.innerHTML = isOpen
+            ? 'View Analysis <span class="arrow">▼</span>'
+            : 'Hide Analysis <span class="arrow">▼</span>';
+    }
+</script>
+
+</body>
+</html>

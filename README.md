@@ -25,10 +25,10 @@ See [architecture.md](architecture.md) for the full pipeline diagram.
 
 The pipeline has four stages:
 
-1. **Data preparation** -- Load the Superstore dataset, split into current year (2026) vs historical baseline (2023-2025), and calculate margin, year-over-year delta, and average discount rate for each dimension
-2. **Data grounding** -- Pre-calculate direction labels and format all numbers before passing to the LLM, so the model reasons on verified facts rather than raw data
-3. **Prompt layer** -- Five modular prompt files, one per dimension plus a synthesis prompt that produces the executive brief
-4. **Report generation** -- Assemble all narratives and metrics into a single interactive HTML file
+1. **Data preparation** - Load the Superstore dataset, split into current year (2026) vs historical baseline (2023-2025), and calculate margin, year-over-year delta, and average discount rate for each dimension
+2. **Data grounding** - Pre-calculate direction labels and format all numbers before passing to the LLM, so the model reasons on verified facts rather than raw data
+3. **Prompt layer** - Five modular prompt files, one per dimension plus a synthesis prompt that produces the executive brief
+4. **Report generation** - Assemble all narratives and metrics into a single interactive HTML file
 
 ---
 
